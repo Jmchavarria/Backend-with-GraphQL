@@ -6,10 +6,12 @@ import {
 } from '../repositories/task.repository.interface.js';
 
 export class Task {
+  public id: string;
   public title: string;
   public description: string;
   public status: TaskStatusTypeEnum;
   public position: number;
+  public createdAt: Date;
   public updatedAt: Date;
 
   private constructor(attributes: ITask) {

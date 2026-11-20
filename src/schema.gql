@@ -12,12 +12,35 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input DeleteTaskInput {
+  id: ID!
+}
+
+type DeleteTaskResponse {
+  deleted: Boolean!
+  id: ID!
+}
+
 type Mutation {
   createTask(input: CreateTaskInput!): Task!
+  deleteTask(input: DeleteTaskInput!): DeleteTaskResponse!
+  updateTask(input: UpdateTaskInput!): Task!
+}
+
+type PaginatedTasksResponse {
+  data: [Task!]!
+  limit: Int!
+  page: Int!
+  total: Int!
+}
+
+input PaginationInput {
+  limit: Int = 10
+  page: Int = 1
 }
 
 type Query {
-  getTasks: [Task!]!
+  getTasks(input: PaginationInput): PaginatedTasksResponse!
 }
 
 type Task {
@@ -34,4 +57,12 @@ enum TaskStatus {
   DONE
   IN_PROGRESS
   TODO
+}
+
+input UpdateTaskInput {
+  description: String
+  id: ID!
+  position: Int
+  status: TaskStatus
+  title: String
 }

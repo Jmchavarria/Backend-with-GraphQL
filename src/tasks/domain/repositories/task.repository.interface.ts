@@ -19,4 +19,5 @@ export abstract class TaskRepository {
   abstract update(task: UpdateTaskProps): Promise<Task>;
   abstract getById(id: string): Promise<Task | null>;
   abstract get(input: IPagination): Promise<Pagination<Task[]>>;
+  abstract delete(id: string): Promise<void>;
 }

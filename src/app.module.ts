@@ -14,9 +14,20 @@ import { TasksModule } from './tasks/task.module.js';
       isGlobal: true,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
+      // Utiliza Apollo Server como driver/motor de ejecución para GraphQL.
       driver: ApolloDriver,
+
+      // Genera y actualiza automáticamente el archivo schema.gql a partir de los
+      // decoradores de TypeScript (@ObjectType, @InputType, @Query, @Mutation, etc.).
+      // process.cwd() asegura que la ruta se resuelva desde la raíz del proyecto.
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+
+      // Ordena alfabéticamente los tipos y campos en schema.gql para facilitar
+      // la lectura y mantener diffs limpios en el control de versiones (Git).
       sortSchema: true,
+
+      // Habilita la interfaz interactiva en el navegador para explorar el esquema
+      // y ejecutar queries/mutations de prueba (recomendable desactivar en producción).
       playground: true,
     }),
 

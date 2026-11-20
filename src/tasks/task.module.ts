@@ -6,6 +6,8 @@ import { CreateTaskUseCase } from './application/create-task.use-case.js';
 import { GetBoarTasksUseCase } from './application/get-board-tasks.use-case.js';
 import { TaskRepository } from './domain/repositories/task.repository.interface.js';
 import { TaskRepositoryImpl } from './infrastructure/repositories/task.repository-impl.js';
+import { UpdateTaskUseCase } from './application/update-task.use-case.js';
+import { DeleteTaskUseCase } from './application/delete-task.use-case.js';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TaskEntity])],
@@ -13,6 +15,8 @@ import { TaskRepositoryImpl } from './infrastructure/repositories/task.repositor
     TaskResolver,
     CreateTaskUseCase,
     GetBoarTasksUseCase,
+    UpdateTaskUseCase,
+    DeleteTaskUseCase,
     {
       provide: TaskRepository,
       useClass: TaskRepositoryImpl,

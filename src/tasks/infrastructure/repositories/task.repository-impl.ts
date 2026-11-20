@@ -47,4 +47,8 @@ export class TaskRepositoryImpl implements TaskRepository {
     const data = await this.repository.findOneBy({ id });
     return data ? TaskMapper.toDomain(data) : null;
   }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id);
+  }
 }
